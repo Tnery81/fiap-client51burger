@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  initdb.sql: |
+     INSERT INTO client (name, email, cpf) VALUES ('João Silva', 'joao@example.com', '52998224725'), ('Maria Santos', 'maria@example.com', '06325614706'), ('Pedro Oliveira', 'pedro@example.com', '27798646686');
+kind: ConfigMap
+metadata:
+  name: burguer-app-config
