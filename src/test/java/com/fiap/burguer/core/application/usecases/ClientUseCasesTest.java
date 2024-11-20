@@ -18,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-
 public class ClientUseCasesTest {
     @Mock
     private ClientPort clientPort;
