@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 public class AuthenticationAdapter implements AuthenticationPort {
     private final JwtUtil jwtUtil;
 
-    public AuthenticationAdapter() {
-        this.jwtUtil = new JwtUtil();
+    public AuthenticationAdapter(JwtUtil jwtUtil) {
+        this.jwtUtil =  jwtUtil;
     }
 
     @Override
@@ -55,6 +55,20 @@ public class AuthenticationAdapter implements AuthenticationPort {
         String bearerPrefix = "Bearer ";
         String token = authorizationHeader.substring(bearerPrefix.length()).trim();
         return jwtUtil.getIdFromToken(token);
+    }
+
+    @Override
+    public Integer getClientIdFromToken(String authorizationHeader) {
+        String bearerPrefix = "Bearer ";
+        String token = authorizationHeader.substring(bearerPrefix.length()).trim();
+        return jwtUtil.getIdFromToken(token);
+    }
+
+    @Override
+    public String getCpfFromToken(String authorizationHeader) {
+        String bearerPrefix = "Bearer ";
+        String token = authorizationHeader.substring(bearerPrefix.length()).trim();
+        return jwtUtil.getCpfFromToken(token);
     }
 }
 

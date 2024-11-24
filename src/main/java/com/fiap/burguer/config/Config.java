@@ -1,5 +1,6 @@
 package com.fiap.burguer.config;
 import com.fiap.burguer.core.application.usecases.*;
+import com.fiap.burguer.core.application.utils.JwtUtil;
 import com.fiap.burguer.infraestructure.adapters.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,11 +15,13 @@ public class Config {
     ClientAdapter clientAdapter;
 
 
-
     @Autowired
-    AuthenticationAdapter authenticationAdapter;
+    JwtUtil jwtUtil;//JwtUtil
 
-
+    @Bean
+    public AuthenticationAdapter getAuthenticationService() {
+        return new AuthenticationAdapter(jwtUtil);
+    }
 
     @Bean
     public ClientUseCases getClientService() {

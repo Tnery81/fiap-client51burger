@@ -3,11 +3,12 @@ package com.fiap.burguer.core.application.usecases;
 import com.fiap.burguer.core.application.Exception.InvalidCPFException;
 import com.fiap.burguer.core.application.Exception.InvalidEmailException;
 import com.fiap.burguer.core.application.Exception.ResourceNotFoundException;
-import com.fiap.burguer.core.application.ports.AuthenticationPort;
 import com.fiap.burguer.core.application.ports.ClientPort;
 import com.fiap.burguer.core.application.utils.CPFUtils;
 import com.fiap.burguer.core.application.utils.EmailUtils;
 import com.fiap.burguer.core.domain.Client;
+import org.springframework.stereotype.Service;
+
 
 public class ClientUseCases {
     private final ClientPort clientPort;

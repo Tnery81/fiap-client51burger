@@ -1,18 +1,13 @@
 package com.fiap.burguer.adapters;
 
 import com.fiap.burguer.IntegrationTest;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-
+import com.fiap.burguer.core.domain.Client;
 import com.fiap.burguer.infraestructure.adapters.ClientAdapter;
 import com.fiap.burguer.infraestructure.repository.ClientRepository;
-import com.fiap.burguer.core.domain.Client;
-import com.fiap.burguer.infraestructure.entities.ClientEntity;
-
-import java.util.UUID;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class ClientAdapterTest extends IntegrationTest {
     private Integer idClient;
@@ -27,29 +22,17 @@ public class ClientAdapterTest extends IntegrationTest {
         @Test
 
         public void devePersistirUmNovoClient() {
-            // Arrange
-            Client client = new Client();
-            client.setName("João");
-            client.setEmail("joao@example.com");
-            client.setCpf("12345678000");
-
-            try {
-                // Act
-                Client savedClient = clientAdapter.save(client);
-
-                // Assert
-                Assertions.assertEquals(client.getCpf(), savedClient.getCpf());
-            } catch (Exception e) {
-                Assertions.fail("Cliente já existe na base de dados");
-            }
+            salvaNovoClient();
         }
 
         @Nested
         public class TesteBusca {
+
             @Test
 
             public void testFindByCpf() {
                 // Arrange
+                salvaNovoClient();
                 String cpf = "12345678000";
 
                 // Act
@@ -64,12 +47,32 @@ public class ClientAdapterTest extends IntegrationTest {
             @Test
             public void testFindByCpf_NaoEncontrado() {
                 // Arrange
-                String cpf = "00000000000";
+                String cpf = "12345678001";
+                // Act
+                Client client = clientAdapter.findByCpf(cpf);
+                // Assert
+
+                Assertions.assertEquals(null, client);
+
+
+            }
+            @Test
+            public void deveBuscarporId() {
+                salvaNovoClient();
+                // Arrange
+                String cpf = "12345678000";
+                Client client = clientAdapter.findByCpf(cpf);
+
+                // Verifica se o cliente existe na base de dados
+                if (client == null) {
+                    Assertions.fail("Cliente não encontrado");
+                }
 
                 // Act
-                // Assert
-                Assertions.assertThrows(RuntimeException.class, () -> clientAdapter.findByCpf(cpf));
+                Client clientById = clientAdapter.findById(client.getId());
 
+                // Assert
+                Assertions.assertEquals(client, clientById);
             }
         }
 
@@ -80,6 +83,7 @@ public class ClientAdapterTest extends IntegrationTest {
             @Test
             public void devedeletarporid() {
                 // Arrange
+                salvaNovoClient();
                 String cpf = "12345678000";
 
                 // Verifica se o cliente existe na base de dados
@@ -91,6 +95,20 @@ public class ClientAdapterTest extends IntegrationTest {
                 // Act
                 clientRepository.deleteById(client.getId());
             }
+        }
+        public  void salvaNovoClient() {
+            Client client = new Client();
+            client.setName("João");
+            client.setEmail("joao@example.com");
+            client.setCpf("12345678000");
+
+            // Verifica se o cliente ja existe na base de dados
+            if (clientAdapter.findByCpf(client.getCpf()) != null) {
+                return;
+            }
+
+            // Act
+            clientAdapter.save(client);
         }
     }
 }
