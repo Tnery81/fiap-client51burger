@@ -103,18 +103,5 @@ public class GlobalExceptionHandler {
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
-
-    public ResponseEntity<?> handleBadRequestException(Exception exception) {
-        ErrorResponse errorResponse = new ErrorResponse(
-                HttpStatus.BAD_REQUEST.value(),
-                exception.getMessage(),
-                System.currentTimeMillis()
-        );
-        return new ResponseEntity<>(
-                errorResponse,
-                HttpStatus.BAD_REQUEST
-
-        );
-    }
 }
 

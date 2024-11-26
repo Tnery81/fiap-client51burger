@@ -1,5 +1,6 @@
 spring:
   datasource:
+    initialization-mode: always
     url: jdbc:h2:mem:testdb
     username: root
     password: toor
@@ -9,11 +10,11 @@ spring:
       database-platform: org.hibernate.dialect.h2Dialect
       defer-datasource-initialization: true
       hibernate:
-        ddl-auto:create-drop
+        ddl-auto: CREATE-DROP
   sql:
     init:
       mode: always
-      continue-on-error: true
+      continue-on-error: false
       h2:
         console:
           enabled: true

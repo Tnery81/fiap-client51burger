@@ -1,10 +1,16 @@
 package com.fiap.burguer.core.domain;
 
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 import java.io.Serializable;
 import java.util.Objects;
-
+@Entity
+@Table(name = "CLIENT")
 public class Client implements Serializable {
+    @Id
     private int id;
 
     private String name;

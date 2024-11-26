@@ -53,7 +53,6 @@ public class ClientControllerTest extends IntegrationTest {
                 .build();
     }
 
-
     @Nested
     class SuccessClientCalls{
         @Test
@@ -96,7 +95,6 @@ public class ClientControllerTest extends IntegrationTest {
                     .andExpect(status().isOk());
 
         }
-
         @Test
         public void testUptateClient() throws Exception {
             Client cliente = new Client();
@@ -148,8 +146,6 @@ public class ClientControllerTest extends IntegrationTest {
                             .content(new ObjectMapper().writeValueAsString(cliente)))
                     .andExpect(status().isBadRequest());
         }
-
     }
-
 
 }
