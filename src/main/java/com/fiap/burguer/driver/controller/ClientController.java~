@@ -28,7 +28,7 @@ public class ClientController implements ClientApi {
 
     @Override
     public ResponseEntity<Client> getClientById(int id, String authorizationHeader) {
-        Client client = clientUseCases.findById(id, authorizationHeader);
+        Client client = clientUseCases.findById(id);
         return new ResponseEntity<>(client, HttpStatus.OK);    }
 
 

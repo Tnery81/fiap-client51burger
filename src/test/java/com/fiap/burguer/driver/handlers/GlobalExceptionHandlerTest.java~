@@ -52,7 +52,7 @@ public class GlobalExceptionHandlerTest extends IntegrationTest {
     void testHandleUnauthorizedException() throws Exception {
         String errorMessage = "Token não fornecido ou inválido.";
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/client/1").header("Authorization", "")
+                .get("/client/1")
         ).andExpect(status().isUnauthorized()).andExpect(jsonPath("$.status").value(HttpStatus.UNAUTHORIZED.value())).andExpect((jsonPath("$.message").value(errorMessage)));
 
     }

@@ -74,47 +74,5 @@ public class GlobalExceptionHandler {
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
-
-    @ExceptionHandler(ResourceNotAcceptableException.class)
-    public  ResponseEntity<ErrorResponse> handleResourceNotAcceptableException(ResourceNotAcceptableException ex, WebRequest request){
-        ErrorResponse errorResponse = new ErrorResponse(
-                HttpStatus.NOT_ACCEPTABLE.value(),
-                ex.getMessage(),
-                System.currentTimeMillis()
-        );
-        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
-    }
-
-    public ResponseEntity<?> handleException(Exception exception) {
-        ErrorResponse errorResponse = new ErrorResponse(
-                HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                exception.getMessage(),
-                System.currentTimeMillis()
-        );
-        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-    public ResponseEntity<?> handleNotFoundException(Exception exception) {
-        ErrorResponse errorResponse = new ErrorResponse(
-                HttpStatus.NOT_FOUND.value(),
-                exception.getMessage(),
-                System.currentTimeMillis()
-        );
-        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
-    }
-
-    public ResponseEntity<?> handleBadRequestException(Exception exception) {
-        ErrorResponse errorResponse = new ErrorResponse(
-                HttpStatus.BAD_REQUEST.value(),
-                exception.getMessage(),
-                System.currentTimeMillis()
-        );
-        return new ResponseEntity<>(
-                errorResponse,
-                HttpStatus.BAD_REQUEST
-
-        );
-    }
 }
 

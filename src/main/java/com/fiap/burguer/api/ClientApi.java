@@ -39,9 +39,18 @@ public interface ClientApi {
             @ApiResponse(responseCode = "400", description = "Id de cliente inválido",
                     content = @Content),
             @ApiResponse(responseCode = "404", description = "Cliente não encontrada",
-                    content = @Content) })
+                    content = @Content),
+            @ApiResponse(responseCode = "401", description = "Não Autorizado",
+            content = @Content),}
+
+    )
+
+
+
     public @ResponseBody ResponseEntity<Client> getClientById(
-            @Parameter(description = "ID do cliente a ser consultada", required = true) @PathVariable("id") int id);
+            @Parameter(description = "ID do cliente a ser consultada", required = true) @PathVariable("id") int id ,
+            @RequestHeader(value = "Authorization", required = true) String authorizationHeader);
+
 
     @GetMapping("/cpf")
     @Operation(summary = "Consulta cliente por CPF")

@@ -39,6 +39,9 @@ public class ClientControllerTest extends IntegrationTest {
     @Mock
     private ClientUseCases clientUseCases;
 
+    String authorization = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcGYiOiI3NzU4MjkzMDAwMiIsIm5hbWUiOiJNYXJpYSBOdW5lcyIsImlkIjoyLCJpc0FkbWluIjp0cnVlLCJleHAiOjE3MzQxOTM1MTgsImVtYWlsIjoibWFyaWFOdW5lc0BleGFtcGxlLmNvbSJ9.2mOK0LBKuy2lAXFrEuoUQxTvHzXq8ypDS8vnW-b3sD8";
+
+
     @BeforeEach
     public void setup(){
         MockitoAnnotations.openMocks(this);
@@ -77,8 +80,8 @@ public class ClientControllerTest extends IntegrationTest {
             cliente.setEmail("joao@example.com");
             cliente.setCpf("123456789");
 
-            when(clientUseCases.findById(1)).thenReturn(cliente);
-            mvc.perform(MockMvcRequestBuilders.get("/client/1"))
+            when(clientUseCases.findByIdWithOutAuth(1)).thenReturn(cliente);
+            mvc.perform(MockMvcRequestBuilders.get("/client/1").header("Authorization",authorization))
                     .andExpect(status().isOk());
         }
 

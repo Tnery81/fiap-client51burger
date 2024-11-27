@@ -78,7 +78,7 @@ public class ClientUseCasesTest {
 
         when(clientPort.findById(1)).thenReturn(client);
 
-        Client result = clientUseCases.findById(1);
+        Client result = clientUseCases.findByIdWithOutAuth(1);
 
         assertNotNull(result);
         assertEquals(client, result);
@@ -90,7 +90,7 @@ public class ClientUseCasesTest {
         when(clientPort.findById(1)).thenReturn(null);
 
         ResourceNotFoundException thrown = assertThrows(ResourceNotFoundException.class, () -> {
-            clientUseCases.findById(1);
+            clientUseCases.findByIdWithOutAuth(1);
         });
 
         assertEquals("Cliente não encontrado", thrown.getMessage());

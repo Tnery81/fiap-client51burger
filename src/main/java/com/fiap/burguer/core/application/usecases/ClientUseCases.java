@@ -2,7 +2,9 @@ package com.fiap.burguer.core.application.usecases;
 
 import com.fiap.burguer.core.application.Exception.InvalidCPFException;
 import com.fiap.burguer.core.application.Exception.InvalidEmailException;
+import com.fiap.burguer.core.application.Exception.RequestException;
 import com.fiap.burguer.core.application.Exception.ResourceNotFoundException;
+import com.fiap.burguer.core.application.ports.AuthenticationPort;
 import com.fiap.burguer.core.application.ports.ClientPort;
 import com.fiap.burguer.core.application.utils.CPFUtils;
 import com.fiap.burguer.core.application.utils.EmailUtils;
@@ -12,9 +14,11 @@ import org.springframework.stereotype.Service;
 
 public class ClientUseCases {
     private final ClientPort clientPort;
+    private final AuthenticationPort authenticationPort;
 
-    public ClientUseCases(ClientPort clientPort) {
+    public ClientUseCases(ClientPort clientPort, AuthenticationPort authenticationPort) {
         this.clientPort = clientPort;
+        this.authenticationPort = authenticationPort;
     }
 
     public Client saveClientOrUpdate(Client client) {
@@ -30,8 +34,17 @@ public class ClientUseCases {
         return clientPort.save(client);
     }
 
-    public Client findById(int id) {
+    public Client findById(int id, String authorizationHeader) {
+        authenticationPort.validateAuthorizationHeader(authorizationHeader);
         Client client = clientPort.findById(id);
+        if(id < 1 ) throw new RequestException("Id do cliente inválido!");
+        if(client == null) throw new ResourceNotFoundException("Cliente não encontrado");
+        return client;
+    }
+
+    public Client findByIdWithOutAuth(int id) {
+        Client client = clientPort.findById(id);
+        if(id < 1 ) throw new RequestException("Id do cliente inválido!");
         if(client == null) throw new ResourceNotFoundException("Cliente não encontrado");
         return client;
     }
@@ -50,7 +63,7 @@ public class ClientUseCases {
     }
 
     public boolean verifyClientExistance(int id){
-        this.findById(id);
+        this.findByIdWithOutAuth(id);
         return true;
     }
 }

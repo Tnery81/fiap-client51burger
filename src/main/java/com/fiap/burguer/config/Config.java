@@ -14,6 +14,9 @@ public class Config {
     @Autowired
     ClientAdapter clientAdapter;
 
+    @Autowired
+    AuthenticationAdapter authenticationAdapter;
+
 //
 //    @Autowired
 //    JwtUtil jwtUtil;//JwtUtil
@@ -21,7 +24,7 @@ public class Config {
 
     @Bean
     public ClientUseCases getClientService() {
-        return new ClientUseCases(clientAdapter);
+        return new ClientUseCases(clientAdapter,authenticationAdapter );
     }
 
 
