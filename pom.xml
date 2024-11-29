@@ -10,15 +10,15 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.fiap</groupId>
-    <artifactId>51burguer</artifactId>
+    <artifactId>client51burguer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>51burguer</name>
+    <name>client51burguer</name>
     <description>sistema para pedidos de lanche</description>
     <properties>
           <java.version>22</java.version>
         <maven.compiler.release>22</maven.compiler.release>
         <sonar.organization>fiapteam51</sonar.organization>
-        <sonar.projectKey>fiapteam51_payment51burguer</sonar.projectKey>
+        <sonar.projectKey>fiapteam51_client51burguer</sonar.projectKey>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
     <dependencies>
