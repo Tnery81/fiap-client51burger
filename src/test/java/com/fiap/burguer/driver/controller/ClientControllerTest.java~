@@ -116,17 +116,7 @@ public class ClientControllerTest extends IntegrationTest {
                             .content(new ObjectMapper().writeValueAsString(cliente)))
                     .andExpect(status().isOk());
         }
- public void deleteClient            () throws Exception {
-            Client cliente = new Client();
-            cliente.setId(1);
-            cliente.setName("João");
-            cliente.setEmail("joao@example.com");
-            cliente.setCpf("123456789");
-            when(clientUseCases.saveClientOrUpdate(cliente)).thenReturn(cliente);
-            mvc.perform(put("/client").contentType(MediaType.APPLICATION_JSON)
-                            .content(new ObjectMapper().writeValueAsString(cliente)))
-                    .andExpect(status().isOk());
- }
+
 
     }
     @Nested
