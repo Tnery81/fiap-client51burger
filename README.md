@@ -1,6 +1,7 @@
-# Fiap 51 Burguer
+# Fiap 51 Burguer - Autenticação de usuários
 
-Sistema de pedidos de lanche. Segundo tech challenge do curso de Pós Tech - turma 6SOAT de Software Architecture para aplicar conceitos de clean code e clean architecture.
+Sistema de pedidos de lanche. Quarto tech challenge do curso de Pós Tech - turma 6SOAT de Software Architecture para aplicar conceitos Microserviço.
+Microserviço de autenticação de usuários (cliente e admin)
 
 ## 👨‍🔧👩‍🔧 Integrantes
 Carlos Jafet - RM 354076 - cjafet07@gmail.com
@@ -20,14 +21,19 @@ Thiago Augusto Nery - RM 355063 - doomerbr@gmail.com
 
 ### Repositórios no GitHub
 
-- **Infraestrutura Kubernetes com Terraform:**  
+- **Infraestrutura SQL (postgres) Kubernetes com Terraform:**  
   [fiap-k8s51burguer](https://github.com/GuiMM/fiap-k8s51burguer)
 
-- **Infraestrutura de Banco de Dados Gerenciáveis com Terraform:**  
+- **Infraestrutura de Banco de Dados SQL (postgres) Gerenciáveis com Terraform:**  
   [fiap-db51burguer](https://github.com/GuiMM/fiap-db51burguer)
 
-- **Aplicação Executada no Kubernetes:**  
-  [fiap-51burguer](https://github.com/GuiMM/fiap-51burguer)
+- **Infraestrutura de Banco de Dados NoSQL (mongodb) Gerenciáveis com Terraform:**  
+  [fiap-atlasdb51burguer](https://github.com/GuiMM/fiap-atlasdb51burguer)
+  
+- **Link dos repositório dos microserviços aplicação que é executada no Kubernetes:**  
+  - [Pedido e produto (Postgres-SQL)](https://github.com/Isa-Bellinazzi/fiap-product-and-order51burguer)
+  - [Cliente (Postgres-SQL)](https://github.com/Tnery81/fiap-client51burger)
+  - [Checkout (Mondo - NoSQL)](https://github.com/julianoBeerg/fiap-payment51burguer)
 
 - **Funções Lambda:**  
   [fiap-lambda51burguer](https://github.com/julianoBeerg/fiap-lambda51burguer)
@@ -43,41 +49,28 @@ Thiago Augusto Nery - RM 355063 - doomerbr@gmail.com
 - **Vídeo da Terceira Fase do Projeto:**  
   [YouTube - PosTech Software Architecture Grupo 51](https://www.youtube.com/watch?v=Zi2BFEvv9kk&ab_channel=PosTech-SoftwareArchitectureGrupo51)
 
+- **Vídeo da quarta Fase do Projeto:**  
+  [YouTube - PosTech Software Architecture Grupo 51](https://www.youtube.com/watch?v=Zi2BFEvv9kk&ab_channel=PosTech-SoftwareArchitectureGrupo51)
+
 - **PDF com Vídeo, Diagramas e Modelagens:**  
   [Documento Google](https://docs.google.com/document/d/1Ay-OWOHbjec_wPjQI0ntPJny1N1lfZJFQqEHw97hONQ/edit?usp=drive_link)
 
 - **PDF com Repositórios e Collection:**  
   [Documento Google](https://docs.google.com/document/d/1B933OMeg6z2DDZ-wWG-_dW9d0Q6TT2UhvOLmSbwQLnw/edit)
-  
 
-## 🔨 Funcionalidades do projeto
+
+## 🔨 Funcionalidades do projeto de autenticação de usuários
 
     - CRUD Cliente.
                       
     - Identificação do Cliente via CPF.
- 
-    - CRUD produtos.
-                      
-    - Buscar produtos por categoria.
-                       
-    - Fake checkout, apenas enviar os produtos escolhidos para a fila. O checkout é a finalização do pedido.
-
-    - CRUD pedidos.
-                     
-    - Listar os pedidos.
-
-    - Checkout do pedido que deve receber os produtos solicitados e retornar a identificação do pedido.
-
-    - Consultar status do pagamento do pedido.
-
-    - Webhook recebendo confirmação de pagamento.
-
 
 ## ✔️ Técnicas e tecnologias utilizadas
 
 **Faça uma lista de tecnologias e técnicas utilizadas (a justificativa e descrição são opcionais)**:
 
 - `Aplicação`: Java 22
+- `Testes`: junit5
 - `Banco de dados`: Postgres
 - `Arquitetura`: Clean Architecture
 - `Containerização`: Docker
@@ -85,9 +78,8 @@ Thiago Augusto Nery - RM 355063 - doomerbr@gmail.com
 - `Design de software`: DDD
 - `Nuvem`: AWS
 
-
 ## 📐 Diagramas e documentações
- 
+
 - [**Diagramas de Sequência:**](https://github.com/GuiMM/fiap-51burguer/blob/master/Diagrama%20de%20sequencia.png)
 
 - [**Diagrama da arquitetura de autenticação**](https://drive.google.com/file/d/1mVJoEI81gEIqISXHRPgA1j_1fxkFm1ty/view)
@@ -118,26 +110,21 @@ Após a instalação executar os comandos ordenados abaixo na pasta raiz da apli
 
     - kubectl apply -f .\k8s\metrics.yaml
 
-
 3 . **Aplicar Deployment do Banco de Dados:**
 
      - kubectl apply -f .\k8s\deployment-db.yaml
-
 
 4 . **Aplicar Service do Banco de Dados:**
 
      - kubectl apply -f .\k8s\service-db.yaml
 
-
 5 . **Aplicar Deployment da Aplicação:**
 
      - kubectl apply -f .\k8s\deployment-burguer-app.yaml
 
-
 6 . **Aplicar Service da Aplicação:**
 
      - kubectl apply -f .\k8s\service-burguer-app.yaml
-
 
 7 . **Aplicar Horizontal Pod Autoscaler:**
 
@@ -151,6 +138,9 @@ Após a instalação executar os comandos ordenados abaixo na pasta raiz da apli
 
 **Tech challenge 3: Refatoração da arquitetura para provisionar o cluster em cloud(AWS), banco no RDS e sistema de autenticação com Serveless lambda e cognito.**
 
+**Tech challenge 4: Refatoração da arquitetura para provisionar Microserviços.**
+
 
 ## 📄 Licença
 Não se aplica.
+
