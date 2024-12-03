@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     app: burguer-app
-  name: burguer-app
+  name: client-burguer-app
 spec:
   type: LoadBalancer
   allocateLoadBalancerNodePorts: true
