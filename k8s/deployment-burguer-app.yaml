@@ -2,15 +2,15 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: burguer-app
-  name: burguer-app
+    app: client-burguer-app
+  name: client-burguer-app
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: burguer-app
+      app: client-burguer-app
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -19,7 +19,7 @@ spec:
   template:
     metadata:
       labels:
-        app: burguer-app
+        app: client-burguer-app
     spec:
       containers:
         - env:
@@ -54,7 +54,7 @@ spec:
           livenessProbe:
             httpGet:
               path: /manage/health
-              port: 8081
+              port: 80
               httpHeaders:
                 - name: Custom-Header
                   value: Awesome
@@ -63,7 +63,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /manage/health
-              port: 8081
+              port: 80
             initialDelaySeconds: 30
             periodSeconds: 3
           ports:
