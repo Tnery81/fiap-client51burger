@@ -16,7 +16,7 @@ spec:
   - nodePort: 30790
     port: 80
     protocol: TCP
-    targetPort: 8081
+    targetPort: 80
   selector:
     app: client-burguer-app
   sessionAffinity: None
