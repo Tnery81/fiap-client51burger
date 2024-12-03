@@ -13,10 +13,10 @@ spec:
   - IPv4
   ipFamilyPolicy: SingleStack
   ports:
-  - nodePort: 30789
+  - nodePort: 30790
     port: 80
     protocol: TCP
-    targetPort: 80
+    targetPort: 8081
   selector:
     app: burguer-app
   sessionAffinity: None
