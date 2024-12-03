@@ -15,7 +15,11 @@ Juliano Silva Nunes - RM 354144 - silva.juliano8130@gmail.com
 Thiago Augusto Nery - RM 355063 - doomerbr@gmail.com
 
 
-# FIAP 51Burger - Projeto
+# FIAP 51Burger - Client51Burguer
+## 🛠️ Cobertura de testes e coverage do microserviço de cliente
+![image](https://github.com/user-attachments/assets/c23dadf0-c74c-480f-b635-78fe3c6747da)
+
+![image](https://github.com/user-attachments/assets/552a3f5b-81ba-4535-be22-efb4b592dca5)
 
 ## 📁 Acesso ao Projeto
 
