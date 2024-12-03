@@ -7,7 +7,7 @@ services:
     image: client-51-burguer-app
     restart: always
     ports:
-      - "8787:8081"
+      - "8787:8080"
     networks:
       - sql_network
     depends_on:
